@@ -1,0 +1,276 @@
+### Cars POST
+
+POST localhost:8080/api/v1/cars
+Content-Type: application/json
+
+{
+  "brand": "Ford",
+  "model": "Focus",
+  "bodyType": "WAGON",
+  "price": 20000,
+  "yearOfProduction": 2015,
+  "mileage": 300000,
+  "enginePower": 150,
+  "sellerDescription": "rodzinne auto",
+  "countryOfOrigin": "Poland",
+  "colour": "Silver",
+  "transmissionType": "MANUAL",
+  "fuelType": "DIESEL",
+  "driveType": "FRONT_WHEEL_DRIVE",
+  "technicalCondition": "USED"
+}
+
+### Cars GET
+
+GET localhost:8080/api/v1/cars
+
+### Cars PUT
+
+PUT localhost:8080/api/v1/cars/a252c2bb-fd18-4827-955f-209cf03614e9
+Content-Type: application/json
+
+{
+  "brand": "Mazda",
+  "model": "6",
+  "bodyType": "SEDAN",
+  "price": 40000,
+  "yearOfProduction": 2012,
+  "mileage": 200000,
+  "enginePower": 150,
+  "description": "elegancja francja",
+  "countryOfOrigin": "Belgium",
+  "colour": "Black",
+  "transmissionType": "AUTOMATIC",
+  "fuelType": "DIESEL",
+  "driveType": "FRONT_WHEEL_DRIVE",
+  "technicalCondition": "USED"
+}
+
+### Cars DELETE
+
+DELETE localhost:8080/api/v1/cars/b935f903-80bc-4f55-8698-9008ee099eb3
+
+
+### RealEstate POST
+
+POST localhost:8080/api/v1/real-estate
+Content-Type: application/json
+
+{
+  "subCategory": "FOR_SALE",
+  "housingType": "APARTMENT",
+  "price": 200000,
+  "surfaceArea": 120,
+  "floor": "FOURTH",
+  "furnitured": "YES",
+  "numberOfRooms": 4,
+  "description": "none"
+}
+
+### RealEstate PUT
+
+PUT localhost:8080/api/v1/real-estate/049c22e3-ab30-4387-af37-15d2a547692d
+Content-Type: application/json
+
+{
+  "subCategory": "RENT",
+  "housingType": "APARTMENT",
+  "price": 2000,
+  "surfaceArea": 45,
+  "floor": "FIRST",
+  "furnitured": "NO",
+  "numberOfRooms": 2,
+  "description": "Mala chata"
+}
+
+### RealEstate GET
+
+GET localhost:8080/api/v1/real-estate
+
+### RealEstate DELETE
+
+DELETE localhost:8080/api/v1/real-estate/92df9510-b2a0-4488-bc33-4c0df08b7fdc
+
+### Work POST
+
+POST localhost:8080/api/v1/work
+Content-Type: application/json
+
+{
+  "employmentContract": "INTERNSHIP",
+  "workingHours": "PART_TIME_JOB",
+  "experienceRequired": "NO",
+  "placeOfWork": "WORK_FROM_OFFICE",
+  "cityWhereIsWork": "POZNAN"
+}
+
+### Work GET
+
+GET localhost:8080/api/v1/work
+
+### GamesAndConsoles GET
+
+GET localhost:8080/api/v1/games-and-consoles
+
+
+### GamesAndConsoles POST
+
+POST localhost:8080/api/v1/games-and-consoles
+Content-Type: application/json
+
+{
+    "name": "God of War",
+    "subCategory": "GAMES",
+    "platform": "PLAYSTATION",
+    "price": 150,
+    "technicalCondition": "USED",
+    "description": "imba gra"
+
+}
+
+### GamesAndConsoles PUT
+
+PUT localhost:8080/api/v1/games-and-consoles/3aed7397-2fdd-465a-bfd5-5bf8b76a6385
+Content-Type: application/json
+
+{
+  "name": "Monster Hunter",
+  "subCategory": "GAMES",
+  "platform": "NINTENDO_SWITCH",
+  "price": 150,
+  "technicalCondition": "USED",
+  "description": "A game where you hunt monsters, duh"
+
+}
+
+### GamesAndConsoles DELETE
+
+DELETE localhost:8080/api/v1/games-and-consoles/72fadd88-bd83-4720-9ed7-57b5343d6e94
+
+### Sports POST
+
+POST localhost:8080/api/v1/sports
+Content-Type: application/json
+
+{
+  "name": "skateboard",
+  "price": 150
+}
+
+### Sports PUT
+
+PUT localhost:8080/api/v1/sports/72f75ce9-1569-40e8-a030-e2e235c003e7
+Content-Type: application/json
+
+{
+  "name": "Nike running shoes",
+  "price": 180,
+  "condition": "NEW",
+  "description": "minimal wear"
+}
+
+### Sports GET
+
+GET localhost:8080/api/v1/sports
+
+### Sports DELETE
+
+DELETE localhost:8080/api/v1/sports/49b64eed-e05e-47cb-a67e-f672edb4dfe6
+
+### MusicAndEducation POST
+
+POST localhost:8080/api/v1/music-and-education
+Content-Type: application/json
+
+{
+  "categoryType": "BOOKS",
+  "name": "lordOfTheRings",
+  "price": 25,
+  "description": "imba epicka opowiesc o hobbicie dildo swagginsie"
+}
+
+### MusicAndEducation GET
+
+GET localhost:8080/api/v1/music-and-education
+
+### MusicAndEducation PUT
+
+PUT localhost:8080/api/v1/music-and-education/574256af-076c-4198-9b1a-02b88f2d7037
+Content-Type: application/json
+
+{
+  "categoryType": "INSTRUMENTS",
+  "name": "Yamaha Pacifica 120H",
+  "price": 1200,
+  "description": "Swietne wioslo do cwiczen i grania live"
+}
+
+### MusicAndEducation DELETE
+
+DELETE localhost:8080/api/v1/music-and-education/8baec7be-98c3-48d8-ae58-96a231cee636
+
+### VariousServices POST
+
+POST localhost:8080/api/v1/various-services
+Content-Type: application/json
+
+{
+  "serviceOptions": "CLEANING",
+  "description": "Sprzatanie",
+  "pricePerHour": 120
+}
+
+### VariousServices PUT
+
+PUT localhost:8080/api/v1/various-services/45be6880-fbac-4b88-a39f-5a1e8c884a42
+Content-Type: application/json
+
+{
+"serviceOptions": "GARDENING",
+"description": "Koszenie trawy",
+"pricePerHour": "30"
+}
+
+### VariousServices GET
+
+GET localhost:8080/api/v1/various-services
+
+### VariousServices DELETE
+
+DELETE localhost:8080/api/v1/various-services/45be6880-fbac-4b88-a39f-5a1e8c884a42
+
+### ApplicationUser POST
+
+POST localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+  "firstName": "Emil",
+  "lastName": "Korzybski",
+  "nickname": "Wujek",
+  "email": "ekorzybski@gmail.com"
+}
+
+### ApplicationUser GET
+
+GET localhost:8080/api/v1/users
+
+### ApplicationUser GET by id
+
+GET localhost:8080/api/v1/users/{id}
+
+### ApplicationUser PUT
+
+PUT localhost:8080/api/v1/users/b70939df-6404-4146-9cc1-f5d40f32a5a1
+Content-Type: application/json
+
+{
+  "firstName": "Wujek",
+  "lastName": "Ralis",
+  "nickname": "Koras",
+  "email": "mailzdupy@gmail.com"
+}
+
+### ApplicationUser DELETE
+
+DELETE localhost:8080/api/v1/users/{id}
