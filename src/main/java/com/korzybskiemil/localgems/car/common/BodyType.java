@@ -5,4 +5,5 @@ public enum BodyType {
     WAGON,
     SUV,
     HATCHBACK
+
 }

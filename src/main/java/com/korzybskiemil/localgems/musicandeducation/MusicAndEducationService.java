@@ -33,6 +33,7 @@ public class MusicAndEducationService {
         MusicAndEducation musicAndEducation = musicAndEducationRepository.findById(id)
                 .orElseThrow(() -> getMusicAndEducationNotFoundException(id));
 
+//        musicAndEducation.setCategoryType(CategoryType.valueOf(updateMusicAndEducationDto.categoryType().toUpperCase()));
         musicAndEducation.setCategoryType(updateMusicAndEducationDto.categoryType());
         musicAndEducation.setName(updateMusicAndEducationDto.name());
         musicAndEducation.setPrice(updateMusicAndEducationDto.price());

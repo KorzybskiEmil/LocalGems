@@ -4,20 +4,20 @@ POST localhost:8080/api/v1/cars
 Content-Type: application/json
 
 {
-  "brand": "Ford",
-  "model": "Focus",
+  "brand": "Tesla",
+  "model": "S Plaid",
   "bodyType": "WAGON",
-  "price": 20000,
-  "yearOfProduction": 2015,
-  "mileage": 300000,
-  "enginePower": 150,
-  "sellerDescription": "rodzinne auto",
-  "countryOfOrigin": "Poland",
-  "colour": "Silver",
-  "transmissionType": "MANUAL",
-  "fuelType": "DIESEL",
-  "driveType": "FRONT_WHEEL_DRIVE",
-  "technicalCondition": "USED"
+  "price": 600000,
+  "yearOfProduction": 2023,
+  "mileage": 100,
+  "enginePower": 1200,
+  "sellerDescription": "srogi popylacz na wiosce",
+  "countryOfOrigin": "USA",
+  "colour": "Red",
+  "transmissionType": "AUTOMATIC",
+  "fuelType": "ELECTRIC",
+  "driveType": "ALL_WHEEL_DRIVE",
+  "technicalCondition": "NEW"
 }
 
 ### Cars GET
@@ -64,7 +64,7 @@ Content-Type: application/json
   "floor": "FOURTH",
   "furnitured": "YES",
   "numberOfRooms": 4,
-  "description": "none"
+  "description": "spoko chata, tylko szczury"
 }
 
 ### RealEstate PUT
@@ -97,11 +97,12 @@ POST localhost:8080/api/v1/work
 Content-Type: application/json
 
 {
-  "employmentContract": "INTERNSHIP",
-  "workingHours": "PART_TIME_JOB",
-  "experienceRequired": "NO",
+  "employmentType": "CONTRACT_OF_EMPLOYMENT",
+  "description": "sprzątanie po menelach",
   "placeOfWork": "WORK_FROM_OFFICE",
-  "cityWhereIsWork": "POZNAN"
+  "cityWhereIsWork": "Warsaw",
+  "experienceRequired": "NO",
+  "workingHours": "FULL_TIME_JOB"
 }
 
 ### Work GET
@@ -154,7 +155,9 @@ Content-Type: application/json
 
 {
   "name": "skateboard",
-  "price": 150
+  "price": 150,
+  "condition": "NEW",
+  "description": "Brand new"
 }
 
 ### Sports PUT
@@ -183,10 +186,10 @@ POST localhost:8080/api/v1/music-and-education
 Content-Type: application/json
 
 {
-  "categoryType": "BOOKS",
+  "categoryType": "MOVIES",
   "name": "lordOfTheRings",
   "price": 25,
-  "description": "imba epicka opowiesc o hobbicie dildo swagginsie"
+  "description": "imba epicka opowiesc o hobbicie bilbo"
 }
 
 ### MusicAndEducation GET
@@ -216,8 +219,8 @@ Content-Type: application/json
 
 {
   "serviceOptions": "CLEANING",
-  "description": "Sprzatanie",
-  "pricePerHour": 120
+  "description": "Sprzatanie po żulach",
+  "pricePerHour": 30
 }
 
 ### VariousServices PUT
@@ -226,9 +229,9 @@ PUT localhost:8080/api/v1/various-services/45be6880-fbac-4b88-a39f-5a1e8c884a42
 Content-Type: application/json
 
 {
-"serviceOptions": "GARDENING",
-"description": "Koszenie trawy",
-"pricePerHour": "30"
+  "pricePerHour": 20,
+  "description": "zamiatanie",
+  "serviceOptions": "CLEANING"
 }
 
 ### VariousServices GET

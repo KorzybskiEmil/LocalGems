@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public record MusicAndEducationDto(
         UUID id,
-        CategoryType categoryType,
+        CategoryType categoryType,  //string
         String name,
         int price,
         String description

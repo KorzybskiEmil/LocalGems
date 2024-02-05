@@ -25,4 +25,5 @@ public class MusicAndEducation {
     private int price;
     private String description;
 
+
 }

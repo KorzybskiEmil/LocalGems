@@ -12,20 +12,18 @@ public class ApplicationUserMapper {
     public ApplicationUser mapNewDtoToEntity(NewApplicationUserDto dto) {
         return new ApplicationUser(
                 UUID.randomUUID(),
-                dto.firstName(),
-                dto.lastName(),
                 dto.nickname(),
-                dto.email()
+                dto.email(),
+                dto.password()
         );
     }
 
     public ApplicationUserDto mapEntityToDto(ApplicationUser entity) {
         return new ApplicationUserDto(
                 entity.getId(),
-                entity.getFirstName(),
-                entity.getLastName(),
                 entity.getNickname(),
-                entity.getEmail()
+                entity.getEmail(),
+                entity.getPassword()
         );
     }
 }

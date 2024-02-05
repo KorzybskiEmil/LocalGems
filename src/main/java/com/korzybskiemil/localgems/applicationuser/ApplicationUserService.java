@@ -35,17 +35,17 @@ public class ApplicationUserService {
                 .orElse(null);
     }
 
-        public ApplicationUserDto updateApplicationUser(UUID id, NewApplicationUserDto updatedApplicationUserDto) {
-            ApplicationUser applicationUser = applicationUserRepository.findById(id)
-                    .orElseThrow(() -> getApplicationUserNotFoundException(id));
 
-            applicationUser.setFirstName(updatedApplicationUserDto.firstName());
-            applicationUser.setLastName(updatedApplicationUserDto.lastName());
-            applicationUser.setNickname(updatedApplicationUserDto.nickname());
-            applicationUser.setEmail(updatedApplicationUserDto.email());
+    public ApplicationUserDto updateApplicationUser(UUID id, NewApplicationUserDto updatedApplicationUserDto) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(id)
+                .orElseThrow(() -> getApplicationUserNotFoundException(id));
 
-            ApplicationUser save = applicationUserRepository.save(applicationUser);
-            return applicationUserMapper.mapEntityToDto(save);
+        applicationUser.setNickname(updatedApplicationUserDto.nickname());
+        applicationUser.setEmail(updatedApplicationUserDto.email());
+        applicationUser.setPassword(updatedApplicationUserDto.password());
+
+        ApplicationUser save = applicationUserRepository.save(applicationUser);
+        return applicationUserMapper.mapEntityToDto(save);
     }
 
     public void deleteApplicationUser(UUID id) {
@@ -58,4 +58,6 @@ public class ApplicationUserService {
     private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID id) {
         return new ApplicationUserNotFoundException("Application user with id: " + id + " does not exist");
     }
+
 }
+

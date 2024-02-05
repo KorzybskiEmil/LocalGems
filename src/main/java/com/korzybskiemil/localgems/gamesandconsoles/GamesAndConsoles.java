@@ -24,6 +24,7 @@ public class GamesAndConsoles {
     String name;
     @Enumerated
     private SubCategory subCategory;
+    @Enumerated
     private Platform platform;
     private int price;
     @Enumerated

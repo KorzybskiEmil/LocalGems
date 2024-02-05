@@ -3,6 +3,7 @@ package com.korzybskiemil.localgems.applicationuser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.UUID;
@@ -17,11 +18,13 @@ public class ApplicationUser {
 
     @Id
     UUID id;
-    private String firstName;
-    private String lastName;
+    @NotBlank
     @Column(unique = true)
     private String nickname;
+    @NotBlank
     @Column(unique = true)
     @EqualsAndHashCode.Include
     private String email;
+    @NotBlank
+    private String password;
 }

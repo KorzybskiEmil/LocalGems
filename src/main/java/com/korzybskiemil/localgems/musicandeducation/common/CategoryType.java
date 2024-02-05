@@ -5,4 +5,5 @@ public enum CategoryType {
     MUSIC,
     INSTRUMENTS,
     BOOKS
+
 }
