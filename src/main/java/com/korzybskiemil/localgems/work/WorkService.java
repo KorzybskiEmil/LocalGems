@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.work;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.work.dto.NewWorkDto;
 import com.korzybskiemil.localgems.work.dto.WorkDto;
 import jakarta.validation.Valid;
@@ -12,15 +15,21 @@ import java.util.UUID;
 public class WorkService {
 
     private final WorkRepository workRepository;
+    private final ApplicationUserRepository applicationUserRepository;
+
     private final WorkMapper workMapper;
 
-    public WorkService(WorkRepository workRepository, WorkMapper workMapper) {
+    public WorkService(WorkRepository workRepository, ApplicationUserRepository applicationUserRepository, WorkMapper workMapper) {
         this.workRepository = workRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.workMapper = workMapper;
     }
 
     public WorkDto savedNewWorkDto(NewWorkDto newWorkDto) {
-        Work savedWork = workRepository.save(workMapper.mapNewDtoToEntity(newWorkDto));
+        ApplicationUser applicationUser = applicationUserRepository.findById(newWorkDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newWorkDto.userUUID()));
+
+        Work savedWork = workRepository.save(workMapper.mapNewDtoToEntity(newWorkDto, applicationUser));
         return workMapper.mapEntityToDto(savedWork);
     }
 
@@ -54,6 +63,10 @@ public class WorkService {
 
     private WorkNotFoundException getWorkNotFoundException(UUID id) {
         return new WorkNotFoundException("Job with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 
 }

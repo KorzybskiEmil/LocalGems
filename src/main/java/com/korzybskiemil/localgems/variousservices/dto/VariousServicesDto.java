@@ -8,6 +8,7 @@ public record VariousServicesDto(
         UUID id,
         ServiceOptions serviceOptions,
         String description,
-        int pricePerHour
+        int pricePerHour,
+        String userNickname
 ) {
 }

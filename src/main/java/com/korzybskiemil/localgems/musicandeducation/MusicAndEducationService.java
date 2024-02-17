@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.musicandeducation;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.musicandeducation.dto.MusicAndEducationDto;
 import com.korzybskiemil.localgems.musicandeducation.dto.NewMusicAndEducationDto;
 import org.springframework.stereotype.Service;
@@ -11,10 +14,13 @@ import java.util.UUID;
 public class MusicAndEducationService {
 
     private final MusicAndEducationRepository musicAndEducationRepository;
+    private final ApplicationUserRepository applicationUserRepository;
+
     private final MusicAndEducationMapper musicAndEducationMapper;
 
-    public MusicAndEducationService(MusicAndEducationRepository musicAndEducationRepository, MusicAndEducationMapper musicAndEducationMapper) {
+    public MusicAndEducationService(MusicAndEducationRepository musicAndEducationRepository, ApplicationUserRepository applicationUserRepository, MusicAndEducationMapper musicAndEducationMapper) {
         this.musicAndEducationRepository = musicAndEducationRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.musicAndEducationMapper = musicAndEducationMapper;
     }
 
@@ -24,8 +30,11 @@ public class MusicAndEducationService {
                 .toList();
     }
 
-    public MusicAndEducationDto createNewMusicAndEducation(NewMusicAndEducationDto newMusicAndEducationDto) {
-        MusicAndEducation savedMusicAndEducation = musicAndEducationRepository.save(musicAndEducationMapper.mapNewEntityToDto(newMusicAndEducationDto));
+    public MusicAndEducationDto saveNewMusicAndEducation(NewMusicAndEducationDto newMusicAndEducationDto) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(newMusicAndEducationDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newMusicAndEducationDto.userUUID()));
+
+        MusicAndEducation savedMusicAndEducation = musicAndEducationRepository.save(musicAndEducationMapper.mapNewEntityToDto(newMusicAndEducationDto, applicationUser));
         return musicAndEducationMapper.mapEntityToDto(savedMusicAndEducation);
     }
 
@@ -33,7 +42,6 @@ public class MusicAndEducationService {
         MusicAndEducation musicAndEducation = musicAndEducationRepository.findById(id)
                 .orElseThrow(() -> getMusicAndEducationNotFoundException(id));
 
-//        musicAndEducation.setCategoryType(CategoryType.valueOf(updateMusicAndEducationDto.categoryType().toUpperCase()));
         musicAndEducation.setCategoryType(updateMusicAndEducationDto.categoryType());
         musicAndEducation.setName(updateMusicAndEducationDto.name());
         musicAndEducation.setPrice(updateMusicAndEducationDto.price());
@@ -52,5 +60,9 @@ public class MusicAndEducationService {
 
     private MusicAndEducationNotFoundException getMusicAndEducationNotFoundException(UUID id) {
         return new MusicAndEducationNotFoundException("Item with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 }

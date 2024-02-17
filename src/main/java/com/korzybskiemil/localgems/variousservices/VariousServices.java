@@ -1,9 +1,8 @@
 package com.korzybskiemil.localgems.variousservices;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.variousservices.common.ServiceOptions;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -23,5 +22,8 @@ public class VariousServices {
     private ServiceOptions serviceOptions;
     String description;
     int pricePerHour;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
 
 }

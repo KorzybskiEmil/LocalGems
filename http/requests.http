@@ -1,10 +1,11 @@
 ### Cars POST
 
+
 POST localhost:8080/api/v1/cars
 Content-Type: application/json
 
 {
-  "brand": "Tesla",
+  "brand": "DUPA",
   "model": "S Plaid",
   "bodyType": "WAGON",
   "price": 600000,
@@ -17,8 +18,12 @@ Content-Type: application/json
   "transmissionType": "AUTOMATIC",
   "fuelType": "ELECTRIC",
   "driveType": "ALL_WHEEL_DRIVE",
-  "technicalCondition": "NEW"
+  "technicalCondition": "NEW",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
+> {%
+    client.global.set("car-uuid", response.body.id);
+%}
 
 ### Cars GET
 
@@ -37,7 +42,7 @@ Content-Type: application/json
   "yearOfProduction": 2012,
   "mileage": 200000,
   "enginePower": 150,
-  "description": "elegancja francja",
+  "sellerDescription": "elegancja francja",
   "countryOfOrigin": "Belgium",
   "colour": "Black",
   "transmissionType": "AUTOMATIC",
@@ -64,7 +69,8 @@ Content-Type: application/json
   "floor": "FOURTH",
   "furnitured": "YES",
   "numberOfRooms": 4,
-  "description": "spoko chata, tylko szczury"
+  "description": "spoko chata, tylko szczury",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
 ### RealEstate PUT
@@ -102,16 +108,14 @@ Content-Type: application/json
   "placeOfWork": "WORK_FROM_OFFICE",
   "cityWhereIsWork": "Warsaw",
   "experienceRequired": "NO",
-  "workingHours": "FULL_TIME_JOB"
+  "workingHours": "FULL_TIME_JOB",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
 ### Work GET
 
 GET localhost:8080/api/v1/work
 
-### GamesAndConsoles GET
-
-GET localhost:8080/api/v1/games-and-consoles
 
 
 ### GamesAndConsoles POST
@@ -120,14 +124,19 @@ POST localhost:8080/api/v1/games-and-consoles
 Content-Type: application/json
 
 {
-    "name": "God of War",
-    "subCategory": "GAMES",
-    "platform": "PLAYSTATION",
-    "price": 150,
-    "technicalCondition": "USED",
-    "description": "imba gra"
-
+  "name": "God of War",
+  "subCategory": "GAMES",
+  "platform": "PLAYSTATION",
+  "price": 150,
+  "technicalCondition": "USED",
+  "description": "imba gra",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
+
+
+### GamesAndConsoles GET
+
+GET localhost:8080/api/v1/games-and-consoles
 
 ### GamesAndConsoles PUT
 
@@ -141,7 +150,6 @@ Content-Type: application/json
   "price": 150,
   "technicalCondition": "USED",
   "description": "A game where you hunt monsters, duh"
-
 }
 
 ### GamesAndConsoles DELETE
@@ -157,7 +165,8 @@ Content-Type: application/json
   "name": "skateboard",
   "price": 150,
   "condition": "NEW",
-  "description": "Brand new"
+  "description": "Brand new",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
 ### Sports PUT
@@ -189,7 +198,8 @@ Content-Type: application/json
   "categoryType": "MOVIES",
   "name": "lordOfTheRings",
   "price": 25,
-  "description": "imba epicka opowiesc o hobbicie bilbo"
+  "description": "imba epicka opowiesc o hobbicie bilbo",
+  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
 ### MusicAndEducation GET
@@ -248,10 +258,9 @@ POST localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-  "firstName": "Emil",
-  "lastName": "Korzybski",
-  "nickname": "Wujek",
-  "email": "ekorzybski@gmail.com"
+  "nickname": "Emil",
+  "email": "mailzdupy@mail.com",
+  "password": "1241t112t"
 }
 
 ### ApplicationUser GET
@@ -260,7 +269,7 @@ GET localhost:8080/api/v1/users
 
 ### ApplicationUser GET by id
 
-GET localhost:8080/api/v1/users/{id}
+GET localhost:8080/api/v1/users/1e13a7f3-0a2e-402f-bdb4-7fa94c6aee6e
 
 ### ApplicationUser PUT
 
@@ -268,12 +277,15 @@ PUT localhost:8080/api/v1/users/b70939df-6404-4146-9cc1-f5d40f32a5a1
 Content-Type: application/json
 
 {
-  "firstName": "Wujek",
-  "lastName": "Ralis",
   "nickname": "Koras",
-  "email": "mailzdupy@gmail.com"
+  "email": "mailzdupy@gmail.com",
+  "password": "12345"
 }
 
 ### ApplicationUser DELETE
 
 DELETE localhost:8080/api/v1/users/{id}
+
+### ASSIGN CAR TO APP USER
+
+PUT localhost:8080/api/v1/cars/e355be3c-1a28-4476-8013-91e69ef48063/users/1e13a7f3-0a2e-402f-bdb4-7fa94c6aee6e

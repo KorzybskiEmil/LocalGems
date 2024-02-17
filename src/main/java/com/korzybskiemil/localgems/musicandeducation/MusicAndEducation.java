@@ -1,9 +1,8 @@
 package com.korzybskiemil.localgems.musicandeducation;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.musicandeducation.common.CategoryType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -25,5 +24,7 @@ public class MusicAndEducation {
     private int price;
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
 
 }

@@ -1,12 +1,11 @@
 package com.korzybskiemil.localgems.work;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.work.common.EmploymentType;
 import com.korzybskiemil.localgems.work.common.ExperienceRequired;
 import com.korzybskiemil.localgems.work.common.PlaceOfWork;
 import com.korzybskiemil.localgems.work.common.WorkingHours;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -32,5 +31,8 @@ public class Work {
     private PlaceOfWork placeOfWork;
     private String cityWhereIsWork;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
 
 }

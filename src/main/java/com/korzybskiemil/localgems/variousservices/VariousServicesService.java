@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.variousservices;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.variousservices.dto.NewVariousServicesDto;
 import com.korzybskiemil.localgems.variousservices.dto.VariousServicesDto;
 import jakarta.validation.Valid;
@@ -12,16 +15,21 @@ import java.util.UUID;
 public class VariousServicesService {
 
     private final VariousServicesRepository variousServicesRepository;
+    private final ApplicationUserRepository applicationUserRepository;
     private final VariousServicesMapper variousServicesMapper;
 
 
-    public VariousServicesService(VariousServicesRepository variousServicesRepository, VariousServicesMapper variousServicesMapper) {
+    public VariousServicesService(VariousServicesRepository variousServicesRepository, ApplicationUserRepository applicationUserRepository, VariousServicesMapper variousServicesMapper) {
         this.variousServicesRepository = variousServicesRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.variousServicesMapper = variousServicesMapper;
     }
 
     public VariousServicesDto saveNewVariousServices(NewVariousServicesDto newVariousServicesDto) {
-        VariousServices savedVariousServices = variousServicesRepository.save(variousServicesMapper.mapNewDtoToEntity(newVariousServicesDto));
+        ApplicationUser applicationUser = applicationUserRepository.findById(newVariousServicesDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newVariousServicesDto.userUUID()));
+
+        VariousServices savedVariousServices = variousServicesRepository.save(variousServicesMapper.mapNewDtoToEntity(newVariousServicesDto, applicationUser));
         return variousServicesMapper.mapEntityToDto(savedVariousServices);
     }
 
@@ -52,5 +60,9 @@ public class VariousServicesService {
 
     private VariousServicesNotFoundException getVariousServicesNotFoundException(UUID id) {
         return new VariousServicesNotFoundException("Service with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 }

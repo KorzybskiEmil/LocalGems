@@ -16,6 +16,7 @@ public record RealEstateDto(
         Floor floor,
         Furnitured furnitured,
         int numberOfRooms,
-        String description
+        String description,
+        String userNickname
 ) {
 }

@@ -2,6 +2,8 @@ package com.korzybskiemil.localgems.car.dto;
 
 import com.korzybskiemil.localgems.car.common.*;
 
+import java.util.UUID;
+
 public record NewCarDto(
         String brand,
         String model,
@@ -16,6 +18,7 @@ public record NewCarDto(
         TransmissionType transmissionType,
         FuelType fuelType,
         DriveType driveType,
-        TechnicalCondition technicalCondition
+        TechnicalCondition technicalCondition,
+        UUID userUUID
 ) {
 }

@@ -4,6 +4,7 @@ import com.korzybskiemil.localgems.applicationuser.dto.ApplicationUserDto;
 import com.korzybskiemil.localgems.applicationuser.dto.NewApplicationUserDto;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Component
@@ -14,7 +15,14 @@ public class ApplicationUserMapper {
                 UUID.randomUUID(),
                 dto.nickname(),
                 dto.email(),
-                dto.password()
+                dto.password(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>()
         );
     }
 

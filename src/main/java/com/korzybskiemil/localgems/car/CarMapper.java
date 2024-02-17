@@ -1,5 +1,6 @@
 package com.korzybskiemil.localgems.car;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.car.dto.CarDto;
 import com.korzybskiemil.localgems.car.dto.NewCarDto;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ import java.util.UUID;
 @Component
 public class CarMapper {
 
-    public Car mapNewDtoToEntity(NewCarDto dto) {
+    public Car mapNewDtoToEntity(NewCarDto dto, ApplicationUser applicationUser) {
         return new Car(
                 UUID.randomUUID(),
                 dto.brand(),
@@ -25,8 +26,8 @@ public class CarMapper {
                 dto.transmissionType(),
                 dto.fuelType(),
                 dto.driveType(),
-                dto.technicalCondition()
-
+                dto.technicalCondition(),
+                applicationUser
         );
     }
 
@@ -47,6 +48,8 @@ public class CarMapper {
                 entity.getTransmissionType(),
                 entity.getFuelType(),
                 entity.getDriveType(),
-                entity.getTechnicalCondition());
+                entity.getTechnicalCondition(),
+                entity.getUser().getNickname()
+        );
     }
 }

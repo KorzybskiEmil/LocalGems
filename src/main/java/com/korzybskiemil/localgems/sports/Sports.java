@@ -1,9 +1,8 @@
 package com.korzybskiemil.localgems.sports;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.sports.common.ItemCondition;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -24,4 +23,8 @@ public class Sports {
     @Enumerated
     private ItemCondition condition;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
+
 }

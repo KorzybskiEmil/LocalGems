@@ -1,11 +1,17 @@
 package com.korzybskiemil.localgems.applicationuser;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.korzybskiemil.localgems.car.Car;
+import com.korzybskiemil.localgems.gamesandconsoles.GamesAndConsoles;
+import com.korzybskiemil.localgems.musicandeducation.MusicAndEducation;
+import com.korzybskiemil.localgems.realestate.RealEstate;
+import com.korzybskiemil.localgems.sports.Sports;
+import com.korzybskiemil.localgems.variousservices.VariousServices;
+import com.korzybskiemil.localgems.work.Work;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,4 +33,22 @@ public class ApplicationUser {
     private String email;
     @NotBlank
     private String password;
+
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<Car> carAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<GamesAndConsoles> gamesAndConsolesAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<MusicAndEducation> musicAndEducationAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<RealEstate> realEstateAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<Sports> sportsAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<VariousServices> variousServicesAssignedToUser;
+    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    private List<Work> workAssignedToUser;
+
+
 }
+

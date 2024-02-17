@@ -18,7 +18,8 @@ public record CarDto(
         TransmissionType transmissionType,
         FuelType fuelType,
         DriveType driveType,
-        TechnicalCondition technicalCondition
+        TechnicalCondition technicalCondition,
+        String userNickname
 
 ) {
 }

@@ -24,7 +24,7 @@ public class CarController {
     }
 
     @PostMapping
-    public CarDto createNewDeveloper(@Valid @RequestBody NewCarDto newCarDto) {
+    public CarDto createNewCar(@Valid @RequestBody NewCarDto newCarDto) {
         return carService.saveNewCar(newCarDto);
     }
 
@@ -32,6 +32,7 @@ public class CarController {
     public CarDto updateCar(@PathVariable UUID id, @Valid @RequestBody NewCarDto updateCar) {
         return carService.updateCar(id, updateCar);
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable UUID id) {

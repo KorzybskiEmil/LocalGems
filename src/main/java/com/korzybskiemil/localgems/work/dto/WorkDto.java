@@ -14,6 +14,7 @@ public record WorkDto(
         ExperienceRequired experienceRequired,
         PlaceOfWork placeOfWork,
         String cityWhereIsWork,
-        String description
+        String description,
+        String userNickname
 ) {
 }

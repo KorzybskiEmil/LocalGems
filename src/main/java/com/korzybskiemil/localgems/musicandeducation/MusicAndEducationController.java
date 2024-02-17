@@ -25,7 +25,7 @@ public class MusicAndEducationController {
 
     @PostMapping
     public MusicAndEducationDto createNewMusicAndEducation(@Valid @RequestBody NewMusicAndEducationDto newMusicAndEducationDto) {
-        return musicAndEducationService.createNewMusicAndEducation(newMusicAndEducationDto);
+        return musicAndEducationService.saveNewMusicAndEducation(newMusicAndEducationDto);
     }
 
     @PutMapping("/{id}")

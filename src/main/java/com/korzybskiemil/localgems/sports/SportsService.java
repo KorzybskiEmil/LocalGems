@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.sports;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.sports.dto.NewSportsDto;
 import com.korzybskiemil.localgems.sports.dto.SportsDto;
 import jakarta.validation.Valid;
@@ -12,19 +15,25 @@ import java.util.UUID;
 public class SportsService {
 
     private final SportsRepository sportsRepository;
+    private final ApplicationUserRepository applicationUserRepository;
+
     private final SportsMapper sportsMapper;
 
-    public SportsService(SportsRepository sportsRepository, SportsMapper sportsMapper) {
+    public SportsService(SportsRepository sportsRepository, ApplicationUserRepository applicationUserRepository, SportsMapper sportsMapper) {
         this.sportsRepository = sportsRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.sportsMapper = sportsMapper;
     }
 
-    public SportsDto saveNewSports(NewSportsDto newSportsDto){
-        Sports savedSports = sportsRepository.save(sportsMapper.mapNewDtoToEntity(newSportsDto));
+    public SportsDto saveNewSports(NewSportsDto newSportsDto) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(newSportsDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newSportsDto.userUUID()));
+
+        Sports savedSports = sportsRepository.save(sportsMapper.mapNewDtoToEntity(newSportsDto, applicationUser));
         return sportsMapper.mapEntityToDto(savedSports);
     }
 
-    public List<SportsDto> getAllSports(){
+    public List<SportsDto> getAllSports() {
         return sportsRepository.findAll().stream()
                 .map(sportsMapper::mapEntityToDto)
                 .toList();
@@ -52,6 +61,10 @@ public class SportsService {
 
     private SportsNotFoundException getSportsNotFoundException(UUID id) {
         return new SportsNotFoundException("Item with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 
 }

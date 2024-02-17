@@ -1,12 +1,11 @@
 package com.korzybskiemil.localgems.realestate;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.realestate.common.Floor;
 import com.korzybskiemil.localgems.realestate.common.Furnitured;
 import com.korzybskiemil.localgems.realestate.common.HousingType;
 import com.korzybskiemil.localgems.realestate.common.SubCategory;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -33,5 +32,8 @@ public class RealEstate {
     private Furnitured furnitured;
     private int numberOfRooms;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
 
 }

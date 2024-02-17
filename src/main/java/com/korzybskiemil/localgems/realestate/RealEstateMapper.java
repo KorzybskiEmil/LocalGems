@@ -1,5 +1,6 @@
 package com.korzybskiemil.localgems.realestate;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.realestate.dto.NewRealEstateDto;
 import com.korzybskiemil.localgems.realestate.dto.RealEstateDto;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,7 @@ import java.util.UUID;
 @Component
 public class RealEstateMapper {
 
-    public RealEstate mapNewDtoToEntity(NewRealEstateDto dto) {
+    public RealEstate mapNewDtoToEntity(NewRealEstateDto dto, ApplicationUser applicationUser) {
         return new RealEstate(
                 UUID.randomUUID(),
                 dto.subCategory(),
@@ -19,7 +20,8 @@ public class RealEstateMapper {
                 dto.floor(),
                 dto.furnitured(),
                 dto.numberOfRooms(),
-                dto.description()
+                dto.description(),
+                applicationUser
         );
     }
 
@@ -33,7 +35,8 @@ public class RealEstateMapper {
                 entity.getFloor(),
                 entity.getFurnitured(),
                 entity.getNumberOfRooms(),
-                entity.getDescription()
+                entity.getDescription(),
+                entity.getUser().getNickname()
         );
     }
 }

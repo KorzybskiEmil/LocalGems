@@ -13,7 +13,8 @@ public record GamesAndConsolesDto(
         String name,
         int price,
         TechnicalCondition technicalCondition,
-        String description
+        String description,
+        String userNickname
 
 ) {
 }

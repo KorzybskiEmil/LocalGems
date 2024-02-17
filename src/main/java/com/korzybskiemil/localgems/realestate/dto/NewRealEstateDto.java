@@ -5,6 +5,8 @@ import com.korzybskiemil.localgems.realestate.common.Furnitured;
 import com.korzybskiemil.localgems.realestate.common.HousingType;
 import com.korzybskiemil.localgems.realestate.common.SubCategory;
 
+import java.util.UUID;
+
 public record NewRealEstateDto(
         SubCategory subCategory,
         HousingType housingType,
@@ -13,6 +15,7 @@ public record NewRealEstateDto(
         Floor floor,
         Furnitured furnitured,
         int numberOfRooms,
-        String description
+        String description,
+        UUID userUUID
 ) {
 }

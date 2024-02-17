@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.realestate;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.realestate.dto.NewRealEstateDto;
 import com.korzybskiemil.localgems.realestate.dto.RealEstateDto;
 import jakarta.validation.Valid;
@@ -12,15 +15,21 @@ import java.util.UUID;
 public class RealEstateService {
 
     private final RealEstateRepository realEstateRepository;
+    private final ApplicationUserRepository applicationUserRepository;
+
     private final RealEstateMapper realEstateMapper;
 
-    public RealEstateService(RealEstateRepository realEstateRepository, RealEstateMapper realEstateMapper) {
+    public RealEstateService(RealEstateRepository realEstateRepository, ApplicationUserRepository applicationUserRepository, RealEstateMapper realEstateMapper) {
         this.realEstateRepository = realEstateRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.realEstateMapper = realEstateMapper;
     }
 
-    public RealEstateDto saveNewRealEstate (NewRealEstateDto newRealEstateDto) {
-        RealEstate savedRealEstate = realEstateRepository.save(realEstateMapper.mapNewDtoToEntity(newRealEstateDto));
+    public RealEstateDto saveNewRealEstate(NewRealEstateDto newRealEstateDto) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(newRealEstateDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newRealEstateDto.userUUID()));
+
+        RealEstate savedRealEstate = realEstateRepository.save(realEstateMapper.mapNewDtoToEntity(newRealEstateDto, applicationUser));
         return realEstateMapper.mapEntityToDto(savedRealEstate);
     }
 
@@ -56,5 +65,9 @@ public class RealEstateService {
 
     private RealEstateNotFoundException getRealEstateNotFoundException(UUID id) {
         return new RealEstateNotFoundException("Item with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 }

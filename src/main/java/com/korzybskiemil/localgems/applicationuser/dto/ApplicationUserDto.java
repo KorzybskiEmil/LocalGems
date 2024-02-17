@@ -7,5 +7,6 @@ public record ApplicationUserDto(
         String nickname,
         String email,
         String password
+
 ) {
 }

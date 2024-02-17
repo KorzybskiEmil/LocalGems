@@ -7,7 +7,7 @@ spring:
   jpa:
     database: postgresql
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
-  flyway:
-    locations:db/migration/postgres
+#  flyway:
+#    locations:db/migration/postgres

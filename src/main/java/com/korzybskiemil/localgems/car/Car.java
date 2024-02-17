@@ -1,9 +1,8 @@
 package com.korzybskiemil.localgems.car;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import com.korzybskiemil.localgems.car.common.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -38,6 +37,7 @@ public class Car {
     private DriveType driveType;
     @Enumerated
     private TechnicalCondition technicalCondition;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ApplicationUser user;
 
 }

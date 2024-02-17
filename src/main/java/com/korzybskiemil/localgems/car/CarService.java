@@ -1,5 +1,8 @@
 package com.korzybskiemil.localgems.car;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserNotFoundException;
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.car.dto.CarDto;
 import com.korzybskiemil.localgems.car.dto.NewCarDto;
 import org.springframework.stereotype.Service;
@@ -11,15 +14,20 @@ import java.util.UUID;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final ApplicationUserRepository applicationUserRepository;
     private final CarMapper carMapper;
 
-    public CarService(CarRepository carRepository, CarMapper carMapper) {
+    public CarService(CarRepository carRepository, ApplicationUserRepository applicationUserRepository, CarMapper carMapper) {
         this.carRepository = carRepository;
+        this.applicationUserRepository = applicationUserRepository;
         this.carMapper = carMapper;
     }
 
-    public CarDto saveNewCar (NewCarDto newCarDto) {
-        Car savedCar = carRepository.save(carMapper.mapNewDtoToEntity(newCarDto));
+    public CarDto saveNewCar(NewCarDto newCarDto) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(newCarDto.userUUID())
+                .orElseThrow(() -> getApplicationUserNotFoundException(newCarDto.userUUID()));
+
+        Car savedCar = carRepository.save(carMapper.mapNewDtoToEntity(newCarDto, applicationUser));
         return carMapper.mapEntityToDto(savedCar);
     }
 
@@ -59,7 +67,12 @@ public class CarService {
         carRepository.deleteById(id);
     }
 
+
     private CarNotFoundException getCarNotFoundException(UUID id) {
         return new CarNotFoundException("Car with id: " + id + " does not exist");
+    }
+
+    private ApplicationUserNotFoundException getApplicationUserNotFoundException(UUID applicationUserId) {
+        return new ApplicationUserNotFoundException("Application User with id: " + applicationUserId + " does not exist");
     }
 }
