@@ -20,7 +20,7 @@ public class JwtTokenService {
 
     public String generateToken(String username) {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expiration = now.plusMinutes(authConfigProperties.validity());
+        LocalDateTime expiration = now.plus(authConfigProperties.validity());
 
         return Jwts.builder()
                 .subject(username)

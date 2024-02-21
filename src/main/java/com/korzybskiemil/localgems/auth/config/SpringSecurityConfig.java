@@ -59,8 +59,8 @@ public class SpringSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("user@mail.com")
-                .password(passwordEncoder().encode("usersecret"))
+        UserDetails user = User.withUsername("mailzdupy@mail.com")
+                .password(passwordEncoder().encode("1241t112t"))
                 .roles(USER_READ, USER_WRITE)
                 .build();
 

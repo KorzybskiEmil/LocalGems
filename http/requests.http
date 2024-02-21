@@ -259,17 +259,19 @@ Content-Type: application/json
 
 {
   "nickname": "Emil",
-  "email": "mailzdupy@mail.com",
+  "email": "user@mail.com",
   "password": "1241t112t"
 }
 
 ### ApplicationUser GET
 
 GET localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYWlsemR1cHlAbWFpbC5jb20iLCJleHAiOjE4MTYyMzkwMjJ9.52T5IqzDCQ07xh7HRNA68-oul6AWGqz3aiowSH3_QbE
 
 ### ApplicationUser GET by id
 
-GET localhost:8080/api/v1/users/1e13a7f3-0a2e-402f-bdb4-7fa94c6aee6e
+GET localhost:8080/api/v1/users/c9287dc2-4ed8-4597-8f02-919151fc13e5
+
 
 ### ApplicationUser PUT
 
@@ -278,7 +280,7 @@ Content-Type: application/json
 
 {
   "nickname": "Koras",
-  "email": "mailzdupy@gmail.com",
+  "email": "user@mail.com",
   "password": "12345"
 }
 

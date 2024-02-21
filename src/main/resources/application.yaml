@@ -9,12 +9,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-#  flyway:
-#    locations:db/migration/postgres
 app:
   security:
     jwt:
       token:
         secret: 2e243aac7faf714ea248c3552b189ac499e18338b8f4bd72b0b8d7fb2cd23986dd5201c73621f1cc662aa38342d12b68620caab246948a9523036094228f6ed6
-
-        validity: 60
+        validity: 60m
