@@ -1,5 +1,7 @@
 package com.korzybskiemil.localgems.auth.config;
 
+import com.korzybskiemil.localgems.auth.jwt.JwtRequestFilter;
+import com.korzybskiemil.localgems.auth.jwt.JwtTokenService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -22,6 +24,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableConfigurationProperties(AuthConfigProperties.class)
@@ -40,7 +43,7 @@ public class SpringSecurityConfig {
     public static final String USER_READ = "USER_READ";
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint, JwtRequestFilter jwtRequestFilter) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
@@ -48,7 +51,8 @@ public class SpringSecurityConfig {
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(eh -> eh.authenticationEntryPoint(authenticationEntryPoint));
+                .exceptionHandling(eh -> eh.authenticationEntryPoint(authenticationEntryPoint))
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -76,5 +80,15 @@ public class SpringSecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    public JwtTokenService jwtTokenService(AuthConfigProperties authConfigProperties) {
+        return new JwtTokenService(authConfigProperties);
+    }
+
+    @Bean
+    public JwtRequestFilter jwtRequestFilter(UserDetailsService userDetailsService, JwtTokenService jwtTokenService) {
+        return new JwtRequestFilter(jwtTokenService, userDetailsService);
     }
 }
