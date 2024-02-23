@@ -1,6 +1,7 @@
 package com.korzybskiemil.localgems.auth.user;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "users")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {

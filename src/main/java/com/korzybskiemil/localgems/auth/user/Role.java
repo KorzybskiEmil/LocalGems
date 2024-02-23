@@ -3,6 +3,7 @@ package com.korzybskiemil.localgems.auth.user;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Role {
 
