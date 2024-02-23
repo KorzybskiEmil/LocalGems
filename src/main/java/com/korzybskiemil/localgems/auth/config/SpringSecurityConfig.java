@@ -15,12 +15,9 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
@@ -38,9 +35,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @OpenAPIDefinition(security = {@SecurityRequirement(name = "jwtauth")})
 public class SpringSecurityConfig {
 
-    private static String[] URL_WHITELIST = {"/api/v1/register", "/api/v1/login", "/swagger-ui/**", "/v3/api-docs/**", "/error"};
-    public static final String USER_WRITE = "USER_WRITE";
+    private static String[] URL_WHITELIST = {"/api/v1/auth/register", "/api/v1/login", "/swagger-ui/**", "/v3/api-docs/**", "/error"};
     public static final String USER_READ = "USER_READ";
+    public static final String USER_WRITE = "USER_WRITE";
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint, JwtRequestFilter jwtRequestFilter) throws Exception {
@@ -57,14 +54,19 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+//        UserDetails user = User.withUsername("mailzdupy@mail.com")
+//                .password(passwordEncoder.encode("1241t112t"))
+//                .roles(USER_READ, USER_WRITE)
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
+
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("mailzdupy@mail.com")
-                .password(passwordEncoder().encode("1241t112t"))
-                .roles(USER_READ, USER_WRITE)
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
+        return username -> null;
     }
 
     @Bean
