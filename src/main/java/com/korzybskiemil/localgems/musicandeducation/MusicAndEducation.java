@@ -25,6 +25,6 @@ public class MusicAndEducation {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private ApplicationUser user;
+    private ApplicationUser user    ;
 
 }

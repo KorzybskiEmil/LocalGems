@@ -14,6 +14,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -34,6 +36,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith(BEARER)) {
             String jwtToken = authHeader.substring(BEARER.length() + 1);
+
+        Map<String, Integer> mapasdasd = new HashMap<>();
 
             try {
                 String userName = jwtTokenService.getUserNameFromToken(jwtToken);

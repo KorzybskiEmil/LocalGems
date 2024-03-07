@@ -2,6 +2,7 @@ package com.korzybskiemil.localgems.auth.config;
 
 import com.korzybskiemil.localgems.auth.jwt.JwtRequestFilter;
 import com.korzybskiemil.localgems.auth.jwt.JwtTokenService;
+import com.korzybskiemil.localgems.auth.user.UserRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -15,6 +16,9 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +26,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.Collection;
 
 @Configuration
 @EnableConfigurationProperties(AuthConfigProperties.class)
@@ -35,7 +41,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @OpenAPIDefinition(security = {@SecurityRequirement(name = "jwtauth")})
 public class SpringSecurityConfig {
 
-    private static String[] URL_WHITELIST = {"/api/v1/auth/register", "/api/v1/login", "/swagger-ui/**", "/v3/api-docs/**", "/error"};
+    private static String[] URL_WHITELIST = {"/api/v1/auth/register", "/api/v1/auth/login", "/swagger-ui/**", "/v3/api-docs/**", "/error"};
     public static final String USER_READ = "USER_READ";
     public static final String USER_WRITE = "USER_WRITE";
 
@@ -54,19 +60,49 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-//        UserDetails user = User.withUsername("mailzdupy@mail.com")
-//                .password(passwordEncoder.encode("1241t112t"))
-//                .roles(USER_READ, USER_WRITE)
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 
     @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        return username -> null;
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+        return username -> userRepository.findByEmail(username)
+                .map(user -> new UserDetails() {
+                    @Override
+                    public Collection<? extends GrantedAuthority> getAuthorities() {
+                        return user.getRoles().stream()
+                                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                                .toList();
+                    }
+
+                    @Override
+                    public String getPassword() {
+                        return user.getPassword();
+                    }
+
+                    @Override
+                    public String getUsername() {
+                        return user.getEmail();
+                    }
+
+                    @Override
+                    public boolean isAccountNonExpired() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean isAccountNonLocked() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean isCredentialsNonExpired() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean isEnabled() {
+                        return true;
+                    }
+                })
+                .orElseThrow(() -> new RuntimeException("Unexpected error"));
     }
 
     @Bean

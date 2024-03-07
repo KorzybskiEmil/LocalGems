@@ -3,26 +3,30 @@ package com.korzybskiemil.localgems.auth.user;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Role {
 
     @Id
-    UUID id;
+    private UUID id;
+
     @EqualsAndHashCode.Include
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
 
-    public void assignUser(User user) {
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users = new ArrayList<>();
+
+    public void assignToUser(User user) {
         users.add(user);
     }
 }

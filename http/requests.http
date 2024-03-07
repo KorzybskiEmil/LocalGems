@@ -260,13 +260,13 @@ Content-Type: application/json
 {
   "nickname": "Ralisper",
   "email": "mail@mail.com",
-  "password": "twojastara"
+  "password": "dupadupa"
 }
 
 ### ApplicationUser GET
 
 GET localhost:8080/api/v1/users
-#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYWlsemR1cHlAbWFpbC5jb20iLCJleHAiOjE4MTYyMzkwMjJ9.52T5IqzDCQ07xh7HRNA68-oul6AWGqz3aiowSH3_QbE
+Authorization: Bearer
 
 ### ApplicationUser GET by id
 
@@ -296,12 +296,22 @@ PUT localhost:8080/api/v1/cars/e355be3c-1a28-4476-8013-91e69ef48063/users/1e13a7
 
 ### Login as user
 
-POST localhost:8080/api/v1/login
+POST localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "username": "mailzdupy@mail.com",
-  "password": "1241t112t"
+  "username": "test@test.com",
+  "password": "test"
 }
 
+
+### Register new user
+
+POST localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "test@test.com",
+  "password": "test"
+}
 > {%  client.global.set("auth-token", response.body.token); %}

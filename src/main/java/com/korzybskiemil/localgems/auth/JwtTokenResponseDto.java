@@ -1,6 +1,6 @@
 package com.korzybskiemil.localgems.auth;
 
-public record JwtTokenResponse(
+public record JwtTokenResponseDto(
         String token
 ) {
 }

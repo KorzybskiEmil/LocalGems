@@ -1,21 +1,24 @@
 package com.korzybskiemil.localgems.auth.user;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
-@Data
 @Table(name = "users")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     @Id
-    UUID id;
+    private UUID id;
     @EqualsAndHashCode.Include
     private String email;
     private String password;
@@ -24,9 +27,9 @@ public class User {
     @JoinTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private List<Role> roles = new ArrayList<>();
 
-    private void addRole(Role role) {
+    public void addRole(Role role) {
         roles.add(role);
     }
 }
