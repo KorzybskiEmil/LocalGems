@@ -1,5 +1,6 @@
 package com.korzybskiemil.localgems.applicationuser;
 
+import com.korzybskiemil.localgems.auth.user.Role;
 import com.korzybskiemil.localgems.car.Car;
 import com.korzybskiemil.localgems.gamesandconsoles.GamesAndConsoles;
 import com.korzybskiemil.localgems.musicandeducation.MusicAndEducation;
@@ -11,6 +12,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,6 +51,15 @@ public class ApplicationUser {
     @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
     private List<Work> workAssignedToUser;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
 
 }
 

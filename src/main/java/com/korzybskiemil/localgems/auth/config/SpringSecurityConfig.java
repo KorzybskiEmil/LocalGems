@@ -1,8 +1,8 @@
 package com.korzybskiemil.localgems.auth.config;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUserRepository;
 import com.korzybskiemil.localgems.auth.jwt.JwtRequestFilter;
 import com.korzybskiemil.localgems.auth.jwt.JwtTokenService;
-import com.korzybskiemil.localgems.auth.user.UserRepository;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -18,7 +18,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +27,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.Collection;
+import java.util.UUID;
 
 @Configuration
 @EnableConfigurationProperties(AuthConfigProperties.class)
@@ -42,8 +42,7 @@ import java.util.Collection;
 public class SpringSecurityConfig {
 
     private static String[] URL_WHITELIST = {"/api/v1/auth/register", "/api/v1/auth/login", "/swagger-ui/**", "/v3/api-docs/**", "/error"};
-    public static final String USER_READ = "USER_READ";
-    public static final String USER_WRITE = "USER_WRITE";
+    public static final String USER = "USER";
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint, JwtRequestFilter jwtRequestFilter) throws Exception {
@@ -62,15 +61,17 @@ public class SpringSecurityConfig {
 
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
+    public UserDetailsService userDetailsService(ApplicationUserRepository userRepository) {
         return username -> userRepository.findByEmail(username)
-                .map(user -> new UserDetails() {
+                .map(user -> new CustomUserDetails() {
                     @Override
                     public Collection<? extends GrantedAuthority> getAuthorities() {
                         return user.getRoles().stream()
                                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
                                 .toList();
                     }
+
+                    public UUID getId() {return user.getId();}
 
                     @Override
                     public String getPassword() {

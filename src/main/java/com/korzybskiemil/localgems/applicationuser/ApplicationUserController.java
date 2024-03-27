@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-import static com.korzybskiemil.localgems.auth.config.SpringSecurityConfig.USER_READ;
-import static com.korzybskiemil.localgems.auth.config.SpringSecurityConfig.USER_WRITE;
+import static com.korzybskiemil.localgems.auth.config.SpringSecurityConfig.USER;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -24,31 +23,31 @@ public class ApplicationUserController {
     }
 
     @GetMapping
-    @RolesAllowed(USER_READ)
+    @RolesAllowed(USER)
     public List<ApplicationUserDto> getAllApplicationUsers() {
         return applicationUserService.getAllApplicationUsers();
     }
 
     @GetMapping("/{id}")
-    @RolesAllowed(USER_READ)
+    @RolesAllowed(USER)
     public ApplicationUserDto getOneById(@PathVariable UUID id) {
         return applicationUserService.getOneById(id);
     }
 
     @PostMapping
-    @RolesAllowed(USER_WRITE)
+    @RolesAllowed(USER)
     public ApplicationUserDto createNewApplicationUser(@Valid @RequestBody NewApplicationUserDto newApplicationUserDto) {
         return applicationUserService.saveNewApplicationUser(newApplicationUserDto);
     }
 
     @PutMapping("/{id}")
-    @RolesAllowed(USER_WRITE)
+    @RolesAllowed(USER)
     public ApplicationUserDto updateApplicationUser(@PathVariable UUID id, @Valid @RequestBody NewApplicationUserDto updateApplicationUserDto) {
         return applicationUserService.updateApplicationUser(id, updateApplicationUserDto);
     }
 
     @DeleteMapping("/{id}")
-    @RolesAllowed(USER_WRITE)
+    @RolesAllowed(USER)
     public void deleteApplicationUser(@PathVariable UUID id) {
         applicationUserService.deleteApplicationUser(id);
     }

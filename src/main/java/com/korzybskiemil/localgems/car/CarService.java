@@ -23,9 +23,9 @@ public class CarService {
         this.carMapper = carMapper;
     }
 
-    public CarDto saveNewCar(NewCarDto newCarDto) {
-        ApplicationUser applicationUser = applicationUserRepository.findById(newCarDto.userUUID())
-                .orElseThrow(() -> getApplicationUserNotFoundException(newCarDto.userUUID()));
+    public CarDto saveNewCar(NewCarDto newCarDto, UUID userUUID) {
+        ApplicationUser applicationUser = applicationUserRepository.findById(userUUID)
+                .orElseThrow(() -> getApplicationUserNotFoundException(userUUID));
 
         Car savedCar = carRepository.save(carMapper.mapNewDtoToEntity(newCarDto, applicationUser));
         return carMapper.mapEntityToDto(savedCar);

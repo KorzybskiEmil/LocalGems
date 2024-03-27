@@ -1,7 +1,9 @@
 package com.korzybskiemil.localgems.work;
 
+import com.korzybskiemil.localgems.auth.config.SpringSecurityConfig;
 import com.korzybskiemil.localgems.work.dto.NewWorkDto;
 import com.korzybskiemil.localgems.work.dto.WorkDto;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ public class WorkController {
     }
 
     @PostMapping
+    @RolesAllowed(SpringSecurityConfig.USER)
     public WorkDto createNewWork(@Valid @RequestBody NewWorkDto newWorkDto) {
         return workService.savedNewWorkDto(newWorkDto);
     }

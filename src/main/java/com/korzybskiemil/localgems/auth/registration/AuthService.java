@@ -35,7 +35,7 @@ public class AuthService {
 
         newUser.setId(UUID.randomUUID());
 
-        Role userRole = roleRepository.findByName(SpringSecurityConfig.USER_WRITE)
+        Role userRole = roleRepository.findByName(SpringSecurityConfig.USER)
                 .orElseThrow(() -> new IllegalStateException("Expected user role in database"));
 
         newUser.addRole(userRole);
