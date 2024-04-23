@@ -9,7 +9,6 @@ import com.korzybskiemil.localgems.sports.Sports;
 import com.korzybskiemil.localgems.variousservices.VariousServices;
 import com.korzybskiemil.localgems.work.Work;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -26,14 +25,11 @@ public class ApplicationUser {
 
     @Id
     UUID id;
-    @NotBlank
     @Column(unique = true)
     private String nickname;
-    @NotBlank
     @Column(unique = true)
     @EqualsAndHashCode.Include
     private String email;
-    @NotBlank
     private String password;
 
     @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)

@@ -22,6 +22,7 @@ public class ApplicationUserMapper {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
+                new ArrayList<>(),
                 new ArrayList<>()
         );
     }

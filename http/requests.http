@@ -27,6 +27,8 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MkB0ZXN0LmNvbSIsImlhd
 ### Cars GET
 
 GET localhost:8080/api/v1/cars
+Authorization: Bearer {{auth-token}}
+
 
 ### Cars PUT
 
@@ -283,14 +285,6 @@ Content-Type: application/json
   "password": "12345"
 }
 
-### ApplicationUser DELETE
-
-DELETE localhost:8080/api/v1/users/{id}
-
-### ASSIGN CAR TO APP USER
-
-PUT localhost:8080/api/v1/cars/e355be3c-1a28-4476-8013-91e69ef48063/users/1e13a7f3-0a2e-402f-bdb4-7fa94c6aee6e
-
 ### AUTHORIZATION
 
 ### Login as user
@@ -298,12 +292,11 @@ PUT localhost:8080/api/v1/cars/e355be3c-1a28-4476-8013-91e69ef48063/users/1e13a7
 POST localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
-{
-  "username": "test2@test.com",
-  "password": "test"
-}
 
-> {%  client.global.set("auth-token", response.body.token); %}
+{
+  "username": "emil@test.com",
+  "password": "emil"
+}
 
 ### Register new user
 
@@ -311,7 +304,8 @@ POST localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "username": "test2@test.com",
-  "password": "test"
+  "username": "emil@test.com",
+  "password": "emil"
 }
+
 > {%  client.global.set("auth-token", response.body.token); %}
