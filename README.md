@@ -1,5 +1,5 @@
-Local Gems
-__________
+#Local Gems
+
 This project focuses on small communities, being a tool to advertise various items and services.
 __________
 Requirements:
