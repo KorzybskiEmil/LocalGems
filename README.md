@@ -1,12 +1,12 @@
 # Local Gems
 
-This project focuses on small communities, being a tool to advertise various items and services.
-__________
-Requirements:
+This repository contains Back-End part of Local Gems project, a web application offering a tool to advertise various items and services.
+
+## Requirements:
 * Java 17 or newer installed on your machine
 * Docker and Docker Compose installed on your machine
-__________
-Calling Local endpoints:
+
+## Calling Local endpoints:
 
 <img width="374" alt="Zrzut ekranu 2024-04-23 o 09 30 47" src="https://github.com/KorzybskiEmil/LocalGems/assets/128095215/59132d3e-f86d-4b86-bc02-7482386bd023">                             
 <img width="379" alt="Zrzut ekranu 2024-04-23 o 09 34 18" src="https://github.com/KorzybskiEmil/LocalGems/assets/128095215/e3e9baa0-ab97-4b13-8bb9-18df14b11cf4">
