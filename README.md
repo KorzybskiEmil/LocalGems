@@ -4,6 +4,10 @@ This repository contains Back-End part of Local Gems project, a web application 
 
 ## Requirements:
 * Java 17 or newer installed on your machine
+* Docker and Docker compose installed on your machine
+
+## Running locally
+    ./mvnw clean package && docker-compose up --build 
 
 ## Calling Local endpoints:
 
