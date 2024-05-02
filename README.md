@@ -16,4 +16,4 @@ This repository contains Back-End part of Local Gems project, a web application 
 <img width="435" alt="Zrzut ekranu 2024-04-23 o 09 33 29" src="https://github.com/KorzybskiEmil/LocalGems/assets/128095215/ad528cb7-c201-4632-ba83-a2b7674ef2b0">
 <img width="359" alt="Zrzut ekranu 2024-04-23 o 09 33 37" src="https://github.com/KorzybskiEmil/LocalGems/assets/128095215/268afb3c-4461-4f73-8290-337e38ad84de">
 
-### The project is still under development, hovewer you are welcome to pull and eperiment.
+### The project is still under development, hovewer you are welcome to pull and experiment.
