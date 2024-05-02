@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  localgems-app:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    container_name: localgems
+    ports:
+      - '8081:8081'
+      - '5005:5005'
+    networks:
+      - localgems
+    command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "./localgems.jar"]
+
+
+  localgems-postgres:
+    image: postgres:15.2
+    container_name: localgemsdb
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=localgems
+    ports:
+      - '5432:5432'
+    volumes:
+      - localgemsdbvol:/var/lib/postgresql/data
+    networks:
+      - localgems
+
+
+networks:
+  localgems:
+
+volumes:
+  localgemsdbvol:

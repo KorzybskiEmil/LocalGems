@@ -1,4 +1,5 @@
-FROM eclipse-temurin:17.0.10_7-jre-jammy
+FROM eclipse-temurin:17.0.11_9-jre-jammy
 WORKDIR /app
-COPY ./target/LocalGems*.jar ./lg.jar
-CMD ["java", "-jar", "./lg.jar"]
+COPY ./target/LocalGems*.jar ./localgems.jar
+COPY ./docker/application.yaml ./
+CMD ["java", "-jar", "./localgems.jar"]

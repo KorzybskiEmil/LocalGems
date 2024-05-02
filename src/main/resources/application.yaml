@@ -9,6 +9,9 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+  flyway:
+    baselineOnMigrate: true
+    locations: db/migration/h2
 app:
   security:
     jwt:
