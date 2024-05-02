@@ -1,7 +1,7 @@
 package com.korzybskiemil.localgems.car.common;
 
 public enum DriveType {
-    PRZÓD,
-    TYŁ,
-    AWD
+    FRONT_DRIVE,
+    REAR_DRIVE,
+    ALL_WHEEL_DRIVE
 }

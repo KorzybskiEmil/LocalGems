@@ -1,7 +1,7 @@
 package com.korzybskiemil.localgems.car.common;
 
 public enum FuelType {
-    BENZYNA,
+    GASOLINE,
     DIESEL,
-    ELEKTRYCZNY
+    ELECTRIC
 }

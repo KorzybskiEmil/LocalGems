@@ -308,4 +308,3 @@ Content-Type: application/json
   "password": "emil"
 }
 
-> {%  client.global.set("auth-token", response.body.token); %}
