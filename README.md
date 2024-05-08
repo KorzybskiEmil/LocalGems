@@ -3,7 +3,11 @@
 This repository contains Back-End part of Local Gems project, a web application offering a tool to advertise various items and services.
 
 ## Requirements:
-* Java 17 or newer installed on your machine
+* JDK 17 or newer installed on your machine
+* Docker and Docker compose installed on your machine
+
+## Running locally
+    ./mvnw clean package && docker-compose up --build 
 
 ## Calling Local endpoints:
 
