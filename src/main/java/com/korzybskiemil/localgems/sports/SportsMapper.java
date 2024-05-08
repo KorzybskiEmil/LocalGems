@@ -27,8 +27,7 @@ public class SportsMapper {
                 entity.getName(),
                 entity.getPrice(),
                 entity.getCondition(),
-                entity.getDescription(),
-                entity.getUser().getNickname()
+                entity.getDescription()
         );
     }
 }

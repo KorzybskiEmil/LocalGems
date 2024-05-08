@@ -24,6 +24,6 @@ public class VariousServices {
     int pricePerHour;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private ApplicationUser user;
+    private ApplicationUser applicationUser;
 
 }

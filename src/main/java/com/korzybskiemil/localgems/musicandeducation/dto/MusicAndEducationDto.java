@@ -9,7 +9,6 @@ public record MusicAndEducationDto(
         CategoryType categoryType,  //string
         String name,
         int price,
-        String description,
-        String userNickname
+        String description
 ) {
 }

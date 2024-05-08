@@ -13,8 +13,7 @@ public class ApplicationUserMapper {
     public ApplicationUser mapNewDtoToEntity(NewApplicationUserDto dto) {
         return new ApplicationUser(
                 UUID.randomUUID(),
-                dto.nickname(),
-                dto.email(),
+                dto.username(),
                 dto.password(),
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -30,9 +29,8 @@ public class ApplicationUserMapper {
     public ApplicationUserDto mapEntityToDto(ApplicationUser entity) {
         return new ApplicationUserDto(
                 entity.getId(),
-                entity.getNickname(),
-                entity.getEmail(),
-                entity.getPassword()
+                entity.getUsername()
         );
     }
+
 }

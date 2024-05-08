@@ -7,20 +7,20 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MkB0ZXN0LmNvbSIsImlhd
 
 
 {
-  "brand": "DUPA",
+  "brand": "Tesla",
   "model": "S Plaid",
   "bodyType": "SEDAN",
   "price": 600000,
   "yearOfProduction": 2023,
   "mileage": 100,
   "enginePower": 1200,
-  "sellerDescription": "srogi popylacz na wiosce",
+  "sellerDescription": "fast",
   "countryOfOrigin": "USA",
   "colour": "Red",
-  "transmissionType": "AUTOMATYCZNA",
+  "transmissionType": "AUTOMATIC",
   "fuelType": "DIESEL",
-  "driveType": "PRZÓD",
-  "technicalCondition": "UŻYWANY",
+  "driveType": "FRONT_DRIVE",
+  "technicalCondition": "NEW",
   "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
@@ -48,7 +48,7 @@ Content-Type: application/json
   "colour": "Black",
   "transmissionType": "AUTOMATIC",
   "fuelType": "DIESEL",
-  "driveType": "FRONT_WHEEL_DRIVE",
+  "driveType": "FRONT_DRIVE",
   "technicalCondition": "USED"
 }
 
@@ -70,7 +70,7 @@ Content-Type: application/json
   "floor": "FOURTH",
   "furnitured": "YES",
   "numberOfRooms": 4,
-  "description": "spoko chata, tylko szczury",
+  "description": "cool apartment",
   "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
@@ -87,7 +87,7 @@ Content-Type: application/json
   "floor": "FIRST",
   "furnitured": "NO",
   "numberOfRooms": 2,
-  "description": "Mala chata"
+  "description": "small"
 }
 
 ### RealEstate GET
@@ -105,8 +105,8 @@ Content-Type: application/json
 
 {
   "employmentType": "CONTRACT_OF_EMPLOYMENT",
-  "description": "sprzątanie po menelach",
-  "placeOfWork": "WORK_FROM_OFFICE",
+  "description": "programmer",
+  "placeOfWork": "HOME_OFFICE",
   "cityWhereIsWork": "Warsaw",
   "experienceRequired": "NO",
   "workingHours": "FULL_TIME_JOB",
@@ -130,7 +130,7 @@ Content-Type: application/json
   "platform": "PLAYSTATION",
   "price": 150,
   "technicalCondition": "USED",
-  "description": "imba gra",
+  "description": "Game of the year",
   "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
@@ -178,7 +178,7 @@ Content-Type: application/json
 {
   "name": "Nike running shoes",
   "price": 180,
-  "condition": "NEW",
+  "condition": "USED",
   "description": "minimal wear"
 }
 
@@ -199,7 +199,7 @@ Content-Type: application/json
   "categoryType": "MOVIES",
   "name": "lordOfTheRings",
   "price": 25,
-  "description": "imba epicka opowiesc o hobbicie bilbo",
+  "description": "Epic story",
   "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
 }
 
@@ -216,7 +216,7 @@ Content-Type: application/json
   "categoryType": "INSTRUMENTS",
   "name": "Yamaha Pacifica 120H",
   "price": 1200,
-  "description": "Swietne wioslo do cwiczen i grania live"
+  "description": "Great guitar"
 }
 
 ### MusicAndEducation DELETE
@@ -230,7 +230,7 @@ Content-Type: application/json
 
 {
   "serviceOptions": "CLEANING",
-  "description": "Sprzatanie po żulach",
+  "description": "Car interior cleaning",
   "pricePerHour": 30
 }
 
@@ -241,7 +241,7 @@ Content-Type: application/json
 
 {
   "pricePerHour": 20,
-  "description": "zamiatanie",
+  "description": "Street sweeping",
   "serviceOptions": "CLEANING"
 }
 
@@ -259,9 +259,8 @@ POST localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-  "nickname": "Ralisper",
   "email": "mail@mail.com",
-  "password": "dupadupa"
+  "password": "mail"
 }
 
 ### ApplicationUser GET
@@ -280,7 +279,7 @@ PUT localhost:8080/api/v1/users/b70939df-6404-4146-9cc1-f5d40f32a5a1
 Content-Type: application/json
 
 {
-  "nickname": "Koras",
+  "nickname": "Emil",
   "email": "user@mail.com",
   "password": "12345"
 }
@@ -294,9 +293,11 @@ Content-Type: application/json
 
 
 {
-  "username": "emil@test.com",
+  "username": "emil@mail.com",
   "password": "emil"
 }
+
+> {%  client.global.set("auth-token", response.body.token); %}
 
 ### Register new user
 
@@ -304,7 +305,8 @@ POST localhost:8080/api/v1/auth/register
 Content-Type: application/json
 
 {
-  "username": "emil@test.com",
+  "username": "emil@mail.com",
   "password": "emil"
 }
 
+> {%  client.global.set("auth-token", response.body.token); %}

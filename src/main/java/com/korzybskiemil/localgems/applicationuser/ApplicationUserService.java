@@ -18,10 +18,10 @@ public class ApplicationUserService {
         this.applicationUserMapper = applicationUserMapper;
     }
 
-    public ApplicationUserDto saveNewApplicationUser(NewApplicationUserDto newApplicationUserDto) {
-        ApplicationUser savedApplicationUser = applicationUserRepository.save(applicationUserMapper.mapNewDtoToEntity(newApplicationUserDto));
-        return applicationUserMapper.mapEntityToDto(savedApplicationUser);
-    }
+//    public ApplicationUserDto saveNewApplicationUser(NewApplicationUserDto newApplicationUserDto) {
+//        ApplicationUser savedApplicationUser = applicationUserRepository.save(applicationUserMapper.mapNewDtoToEntity(newApplicationUserDto));
+//        return applicationUserMapper.mapEntityToDto(savedApplicationUser);
+//    }
 
     public List<ApplicationUserDto> getAllApplicationUsers() {
         return applicationUserRepository.findAll().stream()
@@ -40,8 +40,7 @@ public class ApplicationUserService {
         ApplicationUser applicationUser = applicationUserRepository.findById(id)
                 .orElseThrow(() -> getApplicationUserNotFoundException(id));
 
-        applicationUser.setNickname(updatedApplicationUserDto.nickname());
-        applicationUser.setEmail(updatedApplicationUserDto.email());
+        applicationUser.setUsername(updatedApplicationUserDto.username());
         applicationUser.setPassword(updatedApplicationUserDto.password());
 
         ApplicationUser save = applicationUserRepository.save(applicationUser);

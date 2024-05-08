@@ -26,8 +26,7 @@ public class MusicAndEducationMapper {
                 entity.getCategoryType(),
                 entity.getName(),
                 entity.getPrice(),
-                entity.getDescription(),
-                entity.getUser().getNickname()
+                entity.getDescription()
         );
     }
 }

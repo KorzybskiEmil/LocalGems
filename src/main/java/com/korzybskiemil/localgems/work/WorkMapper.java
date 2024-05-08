@@ -31,8 +31,7 @@ public class WorkMapper {
                 entity.getExperienceRequired(),
                 entity.getPlaceOfWork(),
                 entity.getCityWhereIsWork(),
-                entity.getDescription(),
-                entity.getUser().getNickname()
+                entity.getDescription()
         );
     }
 }

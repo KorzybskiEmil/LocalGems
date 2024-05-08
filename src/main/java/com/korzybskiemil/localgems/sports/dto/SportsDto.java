@@ -9,7 +9,6 @@ public record SportsDto(
         String name,
         int price,
         ItemCondition condition,
-        String description,
-        String userNickname
+        String description
 ) {
 }

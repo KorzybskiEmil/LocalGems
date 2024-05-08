@@ -25,6 +25,6 @@ public class Sports {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private ApplicationUser user;
+    private ApplicationUser applicationUser;
 
 }

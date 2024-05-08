@@ -1,9 +1,9 @@
 package com.korzybskiemil.localgems.auth;
 
+import com.korzybskiemil.localgems.applicationuser.dto.ApplicationUserDto;
+import com.korzybskiemil.localgems.applicationuser.dto.NewApplicationUserDto;
 import com.korzybskiemil.localgems.auth.jwt.JwtTokenService;
 import com.korzybskiemil.localgems.auth.registration.AuthService;
-import com.korzybskiemil.localgems.auth.registration.NewUserRegistrationDto;
-import com.korzybskiemil.localgems.auth.registration.RegisteredUserDataDto;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public RegisteredUserDataDto registerUser(@RequestBody NewUserRegistrationDto userRegistrationDto) {
+    public ApplicationUserDto registerUser(@RequestBody NewApplicationUserDto userRegistrationDto) {
         return authService.registerNewUser(userRegistrationDto);
     }
 }

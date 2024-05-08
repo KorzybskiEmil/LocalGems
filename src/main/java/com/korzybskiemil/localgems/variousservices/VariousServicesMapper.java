@@ -25,8 +25,7 @@ public class VariousServicesMapper {
                 entity.getId(),
                 entity.getServiceOptions(),
                 entity.getDescription(),
-                entity.getPricePerHour(),
-                entity.getUser().getNickname()
+                entity.getPricePerHour()
         );
     }
 }

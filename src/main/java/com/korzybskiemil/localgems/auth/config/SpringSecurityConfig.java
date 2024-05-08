@@ -62,7 +62,7 @@ public class SpringSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(ApplicationUserRepository userRepository) {
-        return username -> userRepository.findByEmail(username)
+        return username -> userRepository.findByUsername(username)
                 .map(user -> new CustomUserDetails() {
                     @Override
                     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -80,7 +80,7 @@ public class SpringSecurityConfig {
 
                     @Override
                     public String getUsername() {
-                        return user.getEmail();
+                        return user.getUsername();
                     }
 
                     @Override

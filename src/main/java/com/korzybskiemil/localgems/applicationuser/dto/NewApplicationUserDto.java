@@ -10,8 +10,7 @@ import com.korzybskiemil.localgems.work.Work;
 
 public record NewApplicationUserDto(
 
-        String nickname,
-        String email,
+        String username,
         String password,
         Car carAssignedToUser,
         GamesAndConsoles gamesAndConsolesAssignedToUser,

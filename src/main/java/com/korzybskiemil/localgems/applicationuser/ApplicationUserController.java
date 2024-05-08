@@ -34,11 +34,11 @@ public class ApplicationUserController {
         return applicationUserService.getOneById(id);
     }
 
-    @PostMapping
-    @RolesAllowed(USER)
-    public ApplicationUserDto createNewApplicationUser(@Valid @RequestBody NewApplicationUserDto newApplicationUserDto) {
-        return applicationUserService.saveNewApplicationUser(newApplicationUserDto);
-    }
+//    @PostMapping
+//    @RolesAllowed(USER)
+//    public ApplicationUserDto createNewApplicationUser(@Valid @RequestBody NewApplicationUserDto newApplicationUserDto) {
+//        return applicationUserService.saveNewApplicationUser(newApplicationUserDto);
+//    }
 
     @PutMapping("/{id}")
     @RolesAllowed(USER)

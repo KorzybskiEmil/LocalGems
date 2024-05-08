@@ -48,8 +48,7 @@ public class CarMapper {
                 entity.getTransmissionType(),
                 entity.getFuelType(),
                 entity.getDriveType(),
-                entity.getTechnicalCondition(),
-                entity.getUser().getNickname()
+                entity.getTechnicalCondition()
         );
     }
 }

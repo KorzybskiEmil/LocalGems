@@ -26,36 +26,41 @@ public class ApplicationUser {
     @Id
     UUID id;
     @Column(unique = true)
-    private String nickname;
-    @Column(unique = true)
     @EqualsAndHashCode.Include
-    private String email;
+    private String username;
     private String password;
 
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<Car> carAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<GamesAndConsoles> gamesAndConsolesAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<MusicAndEducation> musicAndEducationAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<RealEstate> realEstateAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<Sports> sportsAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<VariousServices> variousServicesAssignedToUser;
-    @OneToMany(mappedBy ="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "applicationUser", fetch = FetchType.LAZY)
     private List<Work> workAssignedToUser;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "application_user_role",
+            joinColumns = @JoinColumn(name = "application_user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
+
+    public ApplicationUser(String username, String encode) {
+        this.username = username;
+        this.password = encode;
+    }
+
 
     public void addRole(Role role) {
         roles.add(role);
     }
 
 }
+
 

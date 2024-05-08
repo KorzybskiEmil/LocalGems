@@ -38,6 +38,6 @@ public class Car {
     @Enumerated
     private TechnicalCondition technicalCondition;
     @ManyToOne(fetch = FetchType.LAZY)
-    private ApplicationUser user;
+    private ApplicationUser applicationUser;
 
 }

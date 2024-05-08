@@ -1,5 +1,6 @@
 package com.korzybskiemil.localgems.auth.user;
 
+import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -24,9 +25,9 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private List<User> users = new ArrayList<>();
+    private List<ApplicationUser> users = new ArrayList<>();
 
-    public void assignToUser(User user) {
-        users.add(user);
+    public void assignToUser(ApplicationUser applicationUser) {
+        users.add(applicationUser);
     }
 }

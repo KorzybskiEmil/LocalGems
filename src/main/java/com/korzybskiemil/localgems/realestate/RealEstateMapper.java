@@ -35,8 +35,7 @@ public class RealEstateMapper {
                 entity.getFloor(),
                 entity.getFurnitured(),
                 entity.getNumberOfRooms(),
-                entity.getDescription(),
-                entity.getUser().getNickname()
+                entity.getDescription()
         );
     }
 }

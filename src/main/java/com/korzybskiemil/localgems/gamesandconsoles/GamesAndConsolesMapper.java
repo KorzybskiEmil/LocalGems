@@ -33,8 +33,7 @@ public class GamesAndConsolesMapper {
                 entity.getName(),
                 entity.getPrice(),
                 entity.getTechnicalCondition(),
-                entity.getDescription(),
-                entity.getUser().getNickname()
+                entity.getDescription()
         );
     }
 }
