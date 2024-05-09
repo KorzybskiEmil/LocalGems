@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarMapperTest {
 
+    public static final String RANDOM_STRING = UUID.randomUUID().toString();
     private final CarMapper carMapper = new CarMapper();
     private ApplicationUser user;
 
@@ -26,18 +27,17 @@ class CarMapperTest {
     @Test
     void mapNewDtoToEntity() {
         //given:
-        String randomString = UUID.randomUUID().toString();
         NewCarDto newCarDto = new NewCarDto(
-                randomString,
-                randomString,
+                RANDOM_STRING,
+                RANDOM_STRING,
                 BodyType.HATCHBACK,
                 10000,
                 2015,
                 100000,
                 150,
-                randomString,
-                randomString,
-                randomString,
+                RANDOM_STRING,
+                RANDOM_STRING,
+                RANDOM_STRING,
                 TransmissionType.AUTOMATIC,
                 FuelType.ELECTRIC,
                 DriveType.ALL_WHEEL_DRIVE,
@@ -67,19 +67,18 @@ class CarMapperTest {
     @Test
     void mapEntityToDto() {
         //given:
-        String randomString = UUID.randomUUID().toString();
         Car car = new Car(
                 UUID.randomUUID(),
-                randomString,
-                randomString,
+                RANDOM_STRING,
+                RANDOM_STRING,
                 BodyType.HATCHBACK,
                 15000,
                 2000,
                 100000,
                 140,
-                randomString,
-                randomString,
-                randomString,
+                RANDOM_STRING,
+                RANDOM_STRING,
+                RANDOM_STRING,
                 TransmissionType.AUTOMATIC,
                 FuelType.GASOLINE,
                 DriveType.ALL_WHEEL_DRIVE,

@@ -25,7 +25,7 @@ class CarRepositoryTest {
     }
 
     @Test
-    void shouldFindCarById() {
+    void findCarById() {
         //given:
         applicationUser.setId(UUID.randomUUID());
         Car expectedCar = new Car();
