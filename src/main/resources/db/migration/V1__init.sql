@@ -113,6 +113,6 @@ CREATE TABLE IF NOT EXISTS application_user_role
     FOREIGN KEY (application_user_id) REFERENCES application_user (id)
 );
 
-INSERT INTO role (id, name)
-SELECT gen_random_uuid(), 'USER'
-WHERE NOT EXISTS (SELECT * FROM role)
+-- INSERT INTO role (id, name)
+-- SELECT gen_random_uuid(), 'USER'
+-- WHERE NOT EXISTS (SELECT * FROM role)

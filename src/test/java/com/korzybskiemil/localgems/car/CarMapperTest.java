@@ -1,7 +1,6 @@
 package com.korzybskiemil.localgems.car;
 
 import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
-import com.korzybskiemil.localgems.applicationuser.dto.NewApplicationUserDto;
 import com.korzybskiemil.localgems.car.common.*;
 import com.korzybskiemil.localgems.car.dto.CarDto;
 import com.korzybskiemil.localgems.car.dto.NewCarDto;
@@ -67,5 +66,45 @@ class CarMapperTest {
 
     @Test
     void mapEntityToDto() {
+        //given:
+        String randomString = UUID.randomUUID().toString();
+        Car car = new Car(
+                UUID.randomUUID(),
+                randomString,
+                randomString,
+                BodyType.HATCHBACK,
+                15000,
+                2000,
+                100000,
+                140,
+                randomString,
+                randomString,
+                randomString,
+                TransmissionType.AUTOMATIC,
+                FuelType.GASOLINE,
+                DriveType.ALL_WHEEL_DRIVE,
+                TechnicalCondition.NEW,
+                user
+        );
+        //when:
+        CarDto carDto = carMapper.mapEntityToDto(car);
+        //then:
+        assertThat(carDto).isNotNull();
+        assertThat(carDto.id()).isEqualTo(car.getId());
+        assertThat(carDto.brand()).isEqualTo(car.getBrand());
+        assertThat(carDto.model()).isEqualTo(car.getModel());
+        assertThat(carDto.bodyType()).isEqualTo(car.getBodyType());
+        assertThat(carDto.price()).isEqualTo(car.getPrice());
+        assertThat(carDto.yearOfProduction()).isEqualTo(car.getYearOfProduction());
+        assertThat(carDto.mileage()).isEqualTo(car.getMileage());
+        assertThat(carDto.enginePower()).isEqualTo(car.getEnginePower());
+        assertThat(carDto.sellerDescription()).isEqualTo(car.getSellerDescription());
+        assertThat(carDto.countryOfOrigin()).isEqualTo(car.getCountryOfOrigin());
+        assertThat(carDto.colour()).isEqualTo(car.getColour());
+        assertThat(carDto.transmissionType()).isEqualTo(car.getTransmissionType());
+        assertThat(carDto.fuelType()).isEqualTo(car.getFuelType());
+        assertThat(carDto.driveType()).isEqualTo(car.getDriveType());
+        assertThat(carDto.technicalCondition()).isEqualTo(car.getTechnicalCondition());
+
     }
 }

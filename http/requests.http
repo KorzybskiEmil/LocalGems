@@ -3,7 +3,7 @@
 
 POST localhost:8080/api/v1/cars
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MkB0ZXN0LmNvbSIsImlhdCI6MTcxMTU3NDIxOSwiZXhwIjoxNzExNTc3ODE5fQ.ORdUvpz_gCbZvppSh7_xfNTAZOqZ4z1SVqpkqT1DLKzmjaELG7uOkyew4WNpswRxpnwONq8qahw7tVdna4qukA
+Authorization: Bearer {{auth-token}}
 
 
 {
@@ -21,7 +21,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0MkB0ZXN0LmNvbSIsImlhd
   "fuelType": "DIESEL",
   "driveType": "FRONT_DRIVE",
   "technicalCondition": "NEW",
-  "userUUID": "c9287dc2-4ed8-4597-8f02-919151fc13e5"
+  "userUUID": ""
 }
 
 ### Cars GET
