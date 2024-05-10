@@ -11,7 +11,8 @@ import java.util.UUID;
 public class MusicAndEducationMapper {
 
     public MusicAndEducation mapNewEntityToDto(NewMusicAndEducationDto dto, ApplicationUser applicationUser) {
-        return new MusicAndEducation(UUID.randomUUID(),
+        return new MusicAndEducation(
+                UUID.randomUUID(),
                 dto.categoryType(),
                 dto.name(),
                 dto.price(),
