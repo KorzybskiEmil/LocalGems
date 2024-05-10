@@ -20,7 +20,7 @@ class MusicAndEducationMapperTest {
 
     @BeforeEach
     void setUp() {
-        applicationUser = new ApplicationUser("","");
+        applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }
 

@@ -1,6 +1,7 @@
-package com.korzybskiemil.localgems.musicandeducation;
+package com.korzybskiemil.localgems.variousservices;
 
 import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-
 @DataJpaTest
-class MusicAndEducationRepositoryTest {
+class VariousServicesRepositoryTest {
 
     @Autowired
-    private MusicAndEducationRepository musicAndEducationRepository;
+    private VariousServicesRepository variousServicesRepository;
     private ApplicationUser applicationUser;
 
     @BeforeEach
@@ -26,17 +25,18 @@ class MusicAndEducationRepositoryTest {
     }
 
     @Test
-    void findMusicAndEducationById() {
+    void findVariousServicesById() {
         //given:
-        MusicAndEducation expected = new MusicAndEducation();
+        VariousServices expected = new VariousServices();
         expected.setId(UUID.randomUUID());
-        expected = musicAndEducationRepository.save(expected);
+        expected = variousServicesRepository.save(expected);
         //when:
-        Optional<MusicAndEducation> musicAndEducation = musicAndEducationRepository.findById(expected.getId());
+        Optional<VariousServices> variousServices = variousServicesRepository.findById(expected.getId());
         //then:
-        assertThat(musicAndEducation)
+        assertThat(variousServices)
                 .isPresent()
-                .map(MusicAndEducation::getId)
+                .map(VariousServices::getId)
                 .hasValue(expected.getId());
+
     }
 }

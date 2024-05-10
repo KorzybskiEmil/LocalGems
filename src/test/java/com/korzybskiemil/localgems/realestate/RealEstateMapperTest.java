@@ -42,7 +42,7 @@ class RealEstateMapperTest {
                 applicationUser.getId()
         );
         //when:
-         RealEstate realEstate = realEstateMapper.mapNewDtoToEntity(newRealEstateDto, applicationUser);
+        RealEstate realEstate = realEstateMapper.mapNewDtoToEntity(newRealEstateDto, applicationUser);
         //then:
         assertThat(realEstate).isNotNull();
         assertThat(realEstate).extracting(RealEstate::getSubCategory).isEqualTo(newRealEstateDto.subCategory());
