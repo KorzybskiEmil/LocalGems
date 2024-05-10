@@ -10,16 +10,16 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MusicAndEducationMapperTest {
 
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private MusicAndEducationMapper maeMapper = new MusicAndEducationMapper();
+    private MusicAndEducationMapper musicAndEducationMapper;
     ApplicationUser applicationUser;
 
     @BeforeEach
     void setUp() {
+        musicAndEducationMapper = new MusicAndEducationMapper();
         applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }
@@ -35,7 +35,7 @@ class MusicAndEducationMapperTest {
                 applicationUser.getId()
         );
         //when:
-        MusicAndEducation musicAndEducation = maeMapper.mapNewEntityToDto(newMusicAndEducationDto, applicationUser);
+        MusicAndEducation musicAndEducation = musicAndEducationMapper.mapNewEntityToDto(newMusicAndEducationDto, applicationUser);
         //then:
         assertThat(musicAndEducation).isNotNull();
         assertThat(musicAndEducation).extracting(MusicAndEducation::getCategoryType).isEqualTo(newMusicAndEducationDto.categoryType());
@@ -56,7 +56,7 @@ class MusicAndEducationMapperTest {
                 applicationUser
         );
         //when:
-        MusicAndEducationDto musicAndEducationDto = maeMapper.mapEntityToDto(musicAndEducation);
+        MusicAndEducationDto musicAndEducationDto = musicAndEducationMapper.mapEntityToDto(musicAndEducation);
         //then:
         assertThat(musicAndEducationDto).isNotNull();
         assertThat(musicAndEducationDto.id()).isEqualTo(musicAndEducation.getId());

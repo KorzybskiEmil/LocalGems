@@ -10,16 +10,16 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CarMapperTest {
 
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private final CarMapper carMapper = new CarMapper();
+    private CarMapper carMapper;
     private ApplicationUser user;
 
     @BeforeEach
     void setUp() {
+        carMapper = new CarMapper();
         user = new ApplicationUser("", "");
         user.setId(UUID.randomUUID());
     }

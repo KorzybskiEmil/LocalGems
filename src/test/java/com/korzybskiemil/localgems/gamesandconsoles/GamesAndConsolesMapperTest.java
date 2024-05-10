@@ -16,11 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GamesAndConsolesMapperTest {
 
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private final GamesAndConsolesMapper gamesAndConsolesMapper = new GamesAndConsolesMapper();
+    private GamesAndConsolesMapper gamesAndConsolesMapper;
     private ApplicationUser applicationUser;
 
     @BeforeEach
     void setUp() {
+        gamesAndConsolesMapper = new GamesAndConsolesMapper();
         applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }

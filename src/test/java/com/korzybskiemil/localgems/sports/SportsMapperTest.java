@@ -10,17 +10,17 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SportsMapperTest {
 
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private SportsMapper sportsMapper = new SportsMapper();
+    private SportsMapper sportsMapper;
     private ApplicationUser applicationUser;
 
 
     @BeforeEach
     void setUp() {
+        sportsMapper = new SportsMapper();
         applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }

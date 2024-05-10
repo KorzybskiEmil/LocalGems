@@ -13,16 +13,16 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RealEstateMapperTest {
 
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private RealEstateMapper realEstateMapper = new RealEstateMapper();
+    private RealEstateMapper realEstateMapper;
     private ApplicationUser applicationUser;
 
     @BeforeEach
     void setUp() {
+        realEstateMapper = new RealEstateMapper();
         applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }

@@ -7,19 +7,18 @@ import com.korzybskiemil.localgems.variousservices.dto.VariousServicesDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class VariousServicesMapperTest {
     public static final String RANDOM_STRING = UUID.randomUUID().toString();
-    private VariousServicesMapper variousServicesMapper = new VariousServicesMapper();
+    private VariousServicesMapper variousServicesMapper;
     private ApplicationUser applicationUser;
 
     @BeforeEach
     void setUp() {
+        variousServicesMapper = new VariousServicesMapper();
         applicationUser = new ApplicationUser("", "");
         applicationUser.setId(UUID.randomUUID());
     }

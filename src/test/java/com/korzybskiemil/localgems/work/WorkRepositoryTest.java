@@ -1,4 +1,4 @@
-package com.korzybskiemil.localgems.sports;
+package com.korzybskiemil.localgems.work;
 
 import com.korzybskiemil.localgems.applicationuser.ApplicationUser;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,13 +11,13 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @DataJpaTest
-class SportsRepositoryTest {
+class WorkRepositoryTest {
 
     @Autowired
-    private SportsRepository sportsRepository;
+    private WorkRepository workRepository;
     private ApplicationUser applicationUser;
+
 
     @BeforeEach
     void setUp() {
@@ -26,17 +26,17 @@ class SportsRepositoryTest {
     }
 
     @Test
-    void findSportsById() {
+    void findWorkById() {
         //given:
-        Sports expected = new Sports();
+        Work expected = new Work();
         expected.setId(UUID.randomUUID());
-        expected = sportsRepository.save(expected);
+        expected = workRepository.save(expected);
         //when:
-        Optional<Sports> sports = sportsRepository.findById(expected.getId());
+        Optional<Work> work = workRepository.findById(expected.getId());
         //then:
-        assertThat(sports)
+        assertThat(work)
                 .isPresent()
-                .map(Sports::getId)
+                .map(Work::getId)
                 .hasValue(expected.getId());
     }
 }
